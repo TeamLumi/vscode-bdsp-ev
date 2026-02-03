@@ -1,0 +1,54 @@
+{
+  "name": "vscode-bdsp-ev",
+  "displayName": "BDSP Event Script",
+  "description": "Language support for Pokemon BDSP event scripts (.ev files)",
+  "version": "0.1.0",
+  "publisher": "luminescent",
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "activationEvents": [
+    "onLanguage:bdsp-ev"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "bdsp-ev",
+        "aliases": [
+          "BDSP Event Script",
+          "bdsp-ev"
+        ],
+        "extensions": [
+          ".ev"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "bdsp-ev",
+        "scopeName": "source.bdsp-ev",
+        "path": "./syntaxes/bdsp-ev.tmLanguage.json"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^18.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0"
+  }
+}

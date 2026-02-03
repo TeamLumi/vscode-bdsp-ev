@@ -1,0 +1,30 @@
+; Sample BDSP Event Script
+; This demonstrates syntax highlighting and features
+
+ev_start:
+    _TALKMSG("ss_rival%ss_rival_pokemon_select_1_pokemon_select")
+    _TIME_WAIT(30, @LOCALWORK0)
+
+    ; Check if player has item
+    _IF_FLAGON_JUMP(#FH_01, "ev_has_item")
+    _JUMP("ev_no_item")
+
+ev_has_item:
+    _TALKMSG("ss_rival%ss_rival_pokemon_select_1_give_item")
+    _CALL("ev_finish")
+    _END()
+
+ev_no_item:
+    ; Compare work variable
+    _IFVAL_JUMP(@LOCALWORK1, EQ, 5, "ev_special_case")
+    _TALKMSG("ss_rival%ss_rival_pokemon_select_1_no_item")
+    _END()
+
+ev_special_case:
+    ; Set system flag
+    _FLAG_SET($SYS_FLAG_GAME_CLEAR)
+    _TALKMSG("ss_rival%ss_rival_pokemon_select_1_special")
+    _END()
+
+ev_finish:
+    _RET()
